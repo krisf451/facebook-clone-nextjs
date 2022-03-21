@@ -3,6 +3,8 @@ import { useSession } from "next-auth/react";
 import { EmojiHappyIcon } from "@heroicons/react/outline";
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid";
 import { useRef } from "react";
+import { db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 function InputBox() {
   const { data: session } = useSession();
@@ -12,13 +14,16 @@ function InputBox() {
     e.preventDefault();
 
     if (!inputRef.current.value) return;
-
-    set(ref(db), {
-      message: inputRef.current.value,
-      name: session.user.name,
-      email: session.user.email,
-      image: session.user.image,
-    });
+    try {
+      const docRef = await addDoc(collection(db, "posts"), {
+        message: inputRef.current.value,
+        name: session.user.name,
+        email: session.user.email,
+        image: session.user.image,
+      });
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
 
     inputRef.current.value = "";
   };

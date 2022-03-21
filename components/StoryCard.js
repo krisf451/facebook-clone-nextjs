@@ -18,6 +18,9 @@ function StoryCard({ name, src, profile }) {
         layout="fill"
         alt="story"
       />
+      <p className="text-white text-sm hidden lg:absolute lg:inline lg:bottom-5 lg:left-3">
+        {name}
+      </p>
     </div>
   );
 }
