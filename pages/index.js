@@ -1,8 +1,10 @@
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
 
 import Header from "../components/Header";
 import Login from "../components/Login";
+import Sidebar from "../components/Sidebar";
+import Feed from "../components/Feed";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -14,19 +16,9 @@ export default function Home() {
       </Head>
 
       <Header />
-      {/* Header */}
-      <main>
-        <div>
-          Signed in as {session.user.email} <br />
-          <button
-            className="bg-blue-500 rounded-full p-2 text-white"
-            onClick={() => signOut()}
-          >
-            Sign out
-          </button>
-        </div>
-        {/* Sidebar */}
-        {/* Feed */}
+      <main className="flex">
+        <Sidebar />
+        <Feed />
         {/* Widgets */}
       </main>
     </div>
