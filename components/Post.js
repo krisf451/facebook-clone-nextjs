@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ChatAltIcon, ShareIcon, ThumbUpIcon } from "@heroicons/react/outline";
 
-function Post({ name, message, email, postImage, image, timestamp }) {
+function Post({ name, message, postImage, image, timestamp }) {
   return (
     <div className="flex flex-col ">
       <div className="p-5 bg-white mt-5 rounded-t-2xl shadow-sm">
@@ -14,10 +14,14 @@ function Post({ name, message, email, postImage, image, timestamp }) {
             className="rounded-full"
           />
           <div>
-            <p>{name}</p>
-            <p className="text-xs text-gray-400">
-              {new Date(timestamp?.toDate()).toLocaleString()}
-            </p>
+            <p className="font-medium">{name}</p>
+            {timestamp ? (
+              <p className="text-xs text-gray-400">
+                {new Date(timestamp?.toDate()).toLocaleString()}
+              </p>
+            ) : (
+              <p className="text-xs text-gray-400">Loading...</p>
+            )}
           </div>
         </div>
         <p className="pt-4">{message}</p>
