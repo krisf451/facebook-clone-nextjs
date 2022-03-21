@@ -38,7 +38,7 @@ function Header() {
         </div>
       </div>
       <div className="flex justify-center flex-grow">
-        <div className="flex space-x-6 md:space-x-2">
+        <div className="flex space-x-6">
           <HeaderIcon active={true} Icon={HomeIcon} />
           <HeaderIcon Icon={FlagIcon} />
           <HeaderIcon Icon={PlayIcon} />
@@ -56,7 +56,7 @@ function Header() {
           layout="fixed"
           alt="profile-pic"
         />
-        <p className="font-semibold pr-3 whitespace-nowrap">
+        <p className="hidden lg:inline-flex font-semibold pr-3 whitespace-nowrap">
           {session.user.name}
         </p>
         <ViewGridIcon className="icon" />
